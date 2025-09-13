@@ -40,8 +40,24 @@ namespace SACC_Solution.Pages.Sales
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            MetodosPago = _context.MetodoPago
+                .Select(m => new SelectListItem { Value = m.Id.ToString(), Text = m.Nombre })
+                .ToList();
+
+            Usuarios = _context.Usuarios
+                .Select(m => new SelectListItem { Value = m.id.ToString(), Text = m.nombre })
+                .ToList();
+
             if (!ModelState.IsValid)
             {
+                Console.WriteLine("ModelState.IsValid: false");
+                foreach (var entry in ModelState)
+                {
+                    foreach (var error in entry.Value.Errors)
+                    {
+                        Console.WriteLine($"Campo: {entry.Key} - Error: {error.ErrorMessage}");
+                    }
+                }
                 return Page();
             }
 

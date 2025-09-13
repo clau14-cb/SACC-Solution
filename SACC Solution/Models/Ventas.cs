@@ -14,16 +14,16 @@ namespace SACC_Solution.Models
         public required decimal Iva { get; set; }
         public decimal Descuento { get; set; }
         public required decimal Total { get; set; }
-        public required int MetodoPago { get; set; }
+        public int MetodoPago { get; set; }
         [ForeignKey("MetodoPago")]
-        public MetodoPago MetodoPagoNavigation { get; set; }
+        public MetodoPago? MetodoPagoNavigation { get; set; } // Quita 'required' y hazlo nullable
 
         [Column("Estado")]
         public int Estado { get; set; }
 
-        public required int Id_usuario { get; set; }
+        public int Id_usuario { get; set; }
         [ForeignKey("Id_usuario")]
-        public Usuario UsuarioNavigation { get; set; }
+        public Usuario? UsuarioNavigation { get; set; } // Quita 'required' y hazlo nullable
         public required int Id_cita { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
