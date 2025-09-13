@@ -1,0 +1,61 @@
+﻿@page
+@model SACC_Solution.Pages.Sales.IndexModel
+@{
+}
+<div class="container mt-5">
+    <h2>Factura de servicios</h2>
+    <a asp-page="Crear" class="btn btn-primary">Nueva Factura</a>
+    @if (Model.Ventas != null && Model.Ventas.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Iva</th>
+                    <th scope="col">Descuento</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">MetodoPago</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Id_usuario</th>
+                    <th scope="col">Id_cita</th>
+                    <th scope="col">createdAt</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Sales in Model.Ventas)
+                {
+                    <tr>
+                        <td>@Sales.Id</td>
+                        <td>@Sales.Fecha</td>
+                        <td>@Sales.Hora</td>
+                        <td>@Sales.Precio.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                        <td>@Sales.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                        <td>@Sales.Iva.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                        <td>@Sales.Descuento.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                        <td>@Sales.Total.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                        <td>@Sales.MetodoPago</td>
+                        <td>@Sales.Estado</td>
+                        <td>@Sales.Id_usuario</td>
+                        <td>@Sales.Id_cita</td>
+                        <td>@Sales.Created_at</td>
+                        
+                        <td>
+                            <button type="button" class="btn btn-primary text-white">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">No existen registros de venta</div>
+    }
+</div>

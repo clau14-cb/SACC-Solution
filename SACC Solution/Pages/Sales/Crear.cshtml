@@ -1,0 +1,89 @@
+﻿@page
+@model SACC_Solution.Pages.Sales.CrearModel
+
+        @{
+        ViewData["Title"] = "Crear";
+        }
+        
+        <h1>SAAC Solution</h1>
+        
+    <h4>Nuevo registro</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Fecha" class="control-label"></label>
+                <input type="date" asp-for="Ventas.Fecha" class="form-control" />
+                <span asp-validation-for="Ventas.Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Hora" class="control-label"></label>
+                <input type="time" asp-for="Ventas.Hora" class="form-control" />
+                <span asp-validation-for="Ventas.Hora" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Precio" class="control-label"></label>
+                <input type="number" asp-for="Ventas.Precio" class="form-control" />
+                <span asp-validation-for="Ventas.Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Subtotal" class="control-label"></label>
+                <input type="number" asp-for="Ventas.Subtotal" class="form-control" />
+                <span asp-validation-for="Ventas.Subtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Iva" class="control-label"></label>
+                <input type="number" asp-for="Ventas.Iva" class="form-control" />
+                <span asp-validation-for="Ventas.Iva" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Descuento" class="control-label"></label>
+                <input type="number" asp-for="Ventas.Descuento" class="form-control" />
+                <span asp-validation-for="Ventas.Descuento" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Total" class="control-label"></label>
+                <input type="number" asp-for="Ventas.Total" class="form-control" />
+                <span asp-validation-for="Ventas.Total" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class="form-check-label">
+                    Metodo de Pago
+                </label>
+                <select asp-for="Ventas.MetodoPago" class="form-control" asp-items="Model.MetodosPago">
+                    <option value="">Seleccione</option>
+                </select>
+                <span asp-validation-for="Ventas.MetodoPago" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Id_usuario" class="control-label">Usuario</label>
+                <select asp-for="Ventas.Id_usuario" class="form-control" asp-items="Model.Usuarios">
+                    <option value="">Seleccione</option>
+                </select>
+                <span asp-validation-for="Ventas.MetodoPago" class="text-danger"></span>
+                <span asp-validation-for="Ventas.Id_usuario" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Ventas.Id_cita" class="control-label">Cita</label>
+                <input asp-for="Ventas.Id_cita" class="form-control" />
+                <span asp-validation-for="Ventas.Id_cita" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary text-white">
+                    <i class="fa-solid fa-floppy-disk"></i>&nbsp;Guardar
+                </button>
+                <a class="btn btn-secondary text-white" asp-page="Index"><i class="fa-solid fa-ban"></i>&nbsp;Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
