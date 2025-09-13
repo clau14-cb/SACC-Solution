@@ -1,0 +1,94 @@
+﻿@page
+@model SACC_Solution.Pages.Reports.IndexModel
+@{
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-3 mt-3">
+                        <div class="form-group">
+                            <label>Fecha Inicio</label>
+                            <input class="form-control" type="date" asp-for="StartDate" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <div class="form-group">
+                            <label>Fecha Final</label>
+                            <input class="form-control" type="date" asp-for="EndDate" required />
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <div class="form-group">
+                            <label>Metodo de Pago</label>
+                            <select asp-for="MetodoPagoId" class="form-control" asp-items="Model.MetodosPago">
+                                <option value="">Seleccione</option>
+                            </select>
+                            <span asp-validation-for="MetodoPagoId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <div class="form-group">
+                            <label>Creado Por</label>
+                            <select asp-for="CreadoPorId" class="form-control" asp-items="Model.Usuarios">
+                                <option value="">Seleccione</option>
+                            </select>
+                            <span asp-validation-for="CreadoPorId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button class="btn btn-primary text-white">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                                <th>Iva</th>
+                                <th>Total</th>
+                                <th>Método de Pago</th>
+                                <th>Modalidad</th>
+                                <th>Estado</th>
+                                <th>Ubicación</th>
+                                <th>Nombre Usuario</th>
+                                <th>Especialidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.Resultados != null && Model.Resultados.Count > 0)
+                        {
+                            @foreach (var item in Model.Resultados)
+                            {
+                                <tr>
+                                    <td>@item.Fecha.ToShortDateString()</td>
+                                    <td>@item.Hora</td>
+                                    <td>@item.Precio.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                                    <td>@item.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                                    <td>@item.Iva.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                                    <td>@item.Total.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
+                                    <td>@item.MetodoPago</td>
+                                    <td>@item.Modalidad</td>
+                                    <td>@item.Estado</td>
+                                    <td>@item.Ubicacion</td>
+                                    <td>@item.NombreUsuario</td>
+                                    <td>@item.Especialidad</td>
+                                </tr>
+                            }
+                        } 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>

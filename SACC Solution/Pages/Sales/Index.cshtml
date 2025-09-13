@@ -4,11 +4,15 @@
 }
 <div class="container mt-5">
     <h2>Factura de servicios</h2>
-    <a asp-page="Crear" class="btn btn-primary">Nueva Factura</a>
     @if (Model.Ventas != null && Model.Ventas.Any())
     {
         <table class="table">
             <thead>
+                <tr>
+                    <td colspan="14" class="text-center">
+                        <a asp-page="Crear" class="btn btn-primary">Nueva Factura</a>
+                    </td>
+                </tr>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Fecha</th>
@@ -20,7 +24,7 @@
                     <th scope="col">Total</th>
                     <th scope="col">MetodoPago</th>
                     <th scope="col">Estado</th>
-                    <th scope="col">Id_usuario</th>
+                    <th scope="col">Usuario</th>
                     <th scope="col">Id_cita</th>
                     <th scope="col">createdAt</th>
                     <th scope="col">Acciones</th>
@@ -38,11 +42,11 @@
                         <td>@Sales.Iva.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
                         <td>@Sales.Descuento.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
                         <td>@Sales.Total.ToString("C0", new System.Globalization.CultureInfo("es-CO"))</td>
-                        <td>@Sales.MetodoPago</td>
-                        <td>@Sales.Estado</td>
-                        <td>@Sales.Id_usuario</td>
+                        <td>@Sales.MetodoPagoNavigation?.Nombre</td>
+                        <td>@(Sales.Estado == 1 ? "Completado" : "Pendiente")</td>
+                        <td>@Sales.UsuarioNavigation?.nombre</td>
                         <td>@Sales.Id_cita</td>
-                        <td>@Sales.Created_at</td>
+                        <td>@Sales.CreatedAt</td>
                         
                         <td>
                             <button type="button" class="btn btn-primary text-white">

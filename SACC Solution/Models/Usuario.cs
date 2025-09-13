@@ -35,7 +35,8 @@ namespace SACC_Solution.Models
         [Required]
         [StringLength(250)]
 
-        public required int estado { get; set; }
+        [Column("estado")]
+        public required int estado_usuario { get; set; }
 
         public required string permisos { get; set; }
         [Required]
